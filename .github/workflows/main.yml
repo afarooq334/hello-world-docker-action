@@ -1,0 +1,22 @@
+name: Test Docker Action
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run hello world action
+        id: hello
+        uses: ./
+        with:
+          who-to-greet: "Amina"
+
+      - name: Display greeting time
+        run: echo "The greeting was created at ${{ steps.hello.outputs.time }}"
